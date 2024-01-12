@@ -1,7 +1,7 @@
 <template>
   <div class="search-item">
     <label class="search-label" :style="`min-width:${labelWidth}px`">{{title}}：</label>
-    <el-input v-model="inputValue" @input="getValue" class="w-220" :maxlength="maxlength" :placeholder="placeholder" clearable></el-input>
+    <el-cascader v-model="inputValue" :options="option" @change="getValue" :props="{ ...props, ...{checkStrictly: true} }" :show-all-levels="false" clearable class="w-220"></el-cascader>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   data () {
     return {
-      inputValue: ''
+      inputValue: []
     }
   },
   props: {
@@ -18,25 +18,29 @@ export default {
     },
     placeholder: {
       type: String,
-      default: '请输入'
+      default: '请选择'
     },
     labelWidth: {
       default: 70
     },
-    maxlength: {
-      default: 50
-    },
-    modelValue: {
+    value: {
       default: ''
+    },
+    option: {
+      default: () => []
+    },
+    props: {
+      default: () => {
+        return { label: 'label', value: 'value' }
+      }
     }
   },
-  emits: ['update:modelValue'],
-  // model: {
-  //   prop: 'value',
-  //   event: 'getValue'
-  // },
+  model: {
+    prop: 'value',
+    event: 'getValue'
+  },
   watch: {
-    modelValue: {
+    value: {
       handler (v) {
         this.inputValue = v
       },
@@ -44,12 +48,11 @@ export default {
     }
   },
   created () {
-    this.inputValue = this.modelValue
+    this.inputValue = this.value
   },
   methods: {
     getValue () {
-      this.$emit('update:modelValue', this.inputValue)
-      // this.$emit('getValue', this.inputValue)
+      this.$emit('getValue', this.inputValue)
     }
   }
 }

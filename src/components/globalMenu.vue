@@ -7,7 +7,7 @@
             <!-- 一级导航 -->
             <el-menu-item class="one-link" :index="item.children[0].meta.path" :key="item.children[0].meta.path">
               <i :class="item.icon"></i>
-              <span slot="title">{{item.children[0].meta.title}}</span>
+              <span>{{item.children[0].meta.title}}</span>
             </el-menu-item>
           </template>
           <!-- 多级 -->
@@ -21,8 +21,9 @@
 </template>
 
 <script>
-import ElSubmenu from './elSubmenu'
+import ElSubmenu from './elSubmenu.vue'
 import { getQueryUserRoleByUserId, getUserCurrent, getMenuRoleTree } from '@/axios/users'
+import store from '@/store/index'
 export default {
   data () {
     return {
@@ -75,7 +76,9 @@ export default {
       const res = await getMenuRoleTree(params)
       if (res.code === 200) {
         const menus = await this.changeLocalRoute(res.data) // 换区本地路由
-        this.$store.state.menus = menus
+        // this.$store.state.menus = menus
+        store.commit('commitMenu', menus) // 给vuex里的menus字段赋值
+        console.log('menus', menus)
         if (menus.length === 0) {
           this.$router.push('/503')
           this.$alert('<p>当前用户无菜单权限或角色权限，请联系管理员</p><p style="color:#f00">系统将返回登录页</p>', '提示', {

@@ -1,7 +1,9 @@
 <template>
   <div class="search-item">
     <label class="search-label" :style="`min-width:${labelWidth}px`">{{title}}：</label>
-    <el-input v-model="inputValue" @input="getValue" class="w-220" :maxlength="maxlength" :placeholder="placeholder" clearable></el-input>
+    <el-select v-model="inputValue" @change="getValue" class="w-220" :placeholder="placeholder" clearable>
+      <el-option v-for="item in option" :key="item.value" :label="item[props.label]" :value="item[props.value]" />
+    </el-select>
   </div>
 </template>
 
@@ -18,23 +20,24 @@ export default {
     },
     placeholder: {
       type: String,
-      default: '请输入'
+      default: '请选择'
     },
     labelWidth: {
       default: 70
     },
-    maxlength: {
-      default: 50
-    },
     modelValue: {
       default: ''
+    },
+    option: {
+      default: () => []
+    },
+    props: {
+      default: () => {
+        return { label: 'label', value: 'value' }
+      }
     }
   },
   emits: ['update:modelValue'],
-  // model: {
-  //   prop: 'value',
-  //   event: 'getValue'
-  // },
   watch: {
     modelValue: {
       handler (v) {
@@ -49,7 +52,6 @@ export default {
   methods: {
     getValue () {
       this.$emit('update:modelValue', this.inputValue)
-      // this.$emit('getValue', this.inputValue)
     }
   }
 }

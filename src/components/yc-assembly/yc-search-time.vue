@@ -1,7 +1,7 @@
 <template>
   <div class="search-item">
     <label class="search-label" :style="`min-width:${labelWidth}px`">{{title}}：</label>
-    <el-input v-model="inputValue" @input="getValue" class="w-220" :maxlength="maxlength" :placeholder="placeholder" clearable></el-input>
+    <el-date-picker v-model="inputValue" @input="getValue" class="w-220" format="yyyy-MM-dd" value-format="yyyy-MM-dd" type="date" placeholder="选择日期"></el-date-picker>
   </div>
 </template>
 
@@ -16,27 +16,19 @@ export default {
     title: {
       default: ''
     },
-    placeholder: {
-      type: String,
-      default: '请输入'
-    },
     labelWidth: {
       default: 70
     },
-    maxlength: {
-      default: 50
-    },
-    modelValue: {
+    value: {
       default: ''
     }
   },
-  emits: ['update:modelValue'],
-  // model: {
-  //   prop: 'value',
-  //   event: 'getValue'
-  // },
+  model: {
+    prop: 'value',
+    event: 'getValue'
+  },
   watch: {
-    modelValue: {
+    value: {
       handler (v) {
         this.inputValue = v
       },
@@ -44,12 +36,11 @@ export default {
     }
   },
   created () {
-    this.inputValue = this.modelValue
+    this.inputValue = this.value
   },
   methods: {
     getValue () {
-      this.$emit('update:modelValue', this.inputValue)
-      // this.$emit('getValue', this.inputValue)
+      this.$emit('getValue', this.inputValue)
     }
   }
 }

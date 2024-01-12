@@ -155,6 +155,7 @@ export default {
                 } else {
                   parh = `${routeItem.path}/${routeItem.children[0].path}`
                 }
+                console.log(parh)
                 this.$router.push(parh)
               } else {
                 this.$message.error('当前用户无角色权限，请联系超级管理员')

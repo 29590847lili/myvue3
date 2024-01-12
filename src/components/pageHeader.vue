@@ -2,27 +2,13 @@
   <div class="page-header">
     <div class="left">
       <div class="logo">
-        <img src="../assets/logo.png" alt="logo">
+        <!-- <img src="../assets/logo.png" alt="logo"> -->
+        {{$store.state.objectName}}
       </div>
     </div>
     <div class="right">
-      <!-- 协议 -->
-      <Agreement />
-      <div v-if="$store.state.baselineQuestionnaire" class="survey" @click="$router.push('/otherWorkPlatforms/baselineQuestionnaireInput')">
-        <img class="message" src="../assets/message.png">
-        <div>填写基线问卷</div>
-      </div>
-      <authentication></authentication>
-      <div class="button m-r-20" @click="$router.push('/staging/helpCenter')"><i class="iconfont icon-wenhao"></i>帮助中心</div>
-      <div class="line"></div>
-      <el-dropdown @command="handleCommand">
-        <div class="button m-r-20" @click="$router.push('/staging/personCenter')"><i class="iconfont icon-gerenzhongxin"></i>个人中心<i class="el-icon-caret-bottom"></i></div>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="logout">退出登录</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
       <!-- <div class="button m-r-20" @click="logout()"><i class="iconfont icon-tuichu"></i>退出登录</div> -->
-      <!-- <div class="head-name">
+      <div class="head-name">
         <div class="head-img">
           <img class="avatar" src="../assets/head-img.png">
         </div>
@@ -31,13 +17,15 @@
             <span class="userName">
               {{$store.state.userInfo.userName}}<i class="el-icon-arrow-down m-l-10" />
             </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="editPassWord">修改密码</el-dropdown-item>
-              <el-dropdown-item command="logout">退出登录</el-dropdown-item>
-            </el-dropdown-menu>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="editPassWord">修改密码</el-dropdown-item>
+                <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
           </el-dropdown>
         </div>
-      </div> -->
+      </div>
     </div>
     <!-- 首次登录必须进行修改密码 -->
     <Password v-if="$store.state.userInfo && $store.state.userInfo.userId" />
@@ -45,44 +33,19 @@
 </template>
 
 <script>
-import Password from '@/components/password'
-import { postQuestionBaseInfoByPage } from '@/axios/baselineQuestionnaireManage'
+import Password from '@/components/password.vue'
 import { mapMutations } from 'vuex'
-// 搜索条件
-const condition = {
-  status: '3' // 表单状态 3是未填写
-}
+
 export default {
   data () {
     return {
       userInfo: {},
-      search: {
-        condition: { ...condition },
-        page: {
-          current: 1,
-          size: 10
-        }
-      }
     }
   },
   created () {
-    // 获取是否有问卷填写
-    this.getTableList()
+
   },
   methods: {
-    // 获取是否有问卷填写
-    async getTableList (page) {
-      if (page) this.search.page.current = 1
-      this.tableData = []
-      const res = await postQuestionBaseInfoByPage(this.search)
-      if (res.code === 200) {
-        if (res.data.records && res.data.records.length > 0) {
-          this.$store.state.baselineQuestionnaire = true
-        } else {
-          this.$store.state.baselineQuestionnaire = false
-        }
-      }
-    },
     ...mapMutations(['commitPasswordStatus']),
     // 右上角操作
     handleCommand (command) {
@@ -117,7 +80,8 @@ export default {
   height: 56px;
   display: flex;
   justify-content: space-between;
-  background: #fff;
+  // background: #fff;
+  background: #0a9f96;
   box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 1;

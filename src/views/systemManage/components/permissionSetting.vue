@@ -38,7 +38,7 @@ export default {
       if (res.code === 200) {
         res.data.map(item => {
           item.menuName = item.menuName.split('(')[0]
-          item.children.map(cItem => {
+          item.children && item.children.map(cItem => {
             cItem.menuName = cItem.menuName.split('(')[0]
           })
         })
@@ -91,10 +91,10 @@ const postCreateRoleData = { // 新增、编辑角色表单
       font-weight: bold;
       &::before {
         display: inline-block;
-        content: '';
+        content: "";
         width: 3px;
         height: 13px;
-        background: #306BE2;
+        background: #0a9f96;
         margin-right: 10px;
       }
     }

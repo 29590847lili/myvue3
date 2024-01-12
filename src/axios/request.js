@@ -1,6 +1,7 @@
 import axios from 'axios'
 import store from '@/store/index'
 import router from '@/router'
+// import { Notification, Message } from 'element-ui'
 import { ElNotification, ElMessage } from 'element-plus'
 import { loginTime, compareTime } from '@/utils/index'
 import { postTokenRefresh } from '@/axios/users'
@@ -13,11 +14,20 @@ axios.defaults.headers.preventProjectId = 20
 axios.defaults.withCredentials = true
 
 axios.interceptors.request.use(function (config) {
+  config.url = '/api' + config.url
+  config.headers.preventProjectId = 20
+  config.headers.loginOrgId = 0
   config.headers.Authorization = 'Bearer ' + localStorage.getItem('Authorization')
-  const sendUuid = localStorage.getItem('sendUuid') ? localStorage.getItem('sendUuid') : ''
-  config.headers.sendUuid = sendUuid
-  const sendCaptcha = localStorage.getItem('sendCaptcha') ? localStorage.getItem('sendCaptcha') : ''
-  config.headers.sendCaptcha = sendCaptcha
+  if (config.method === 'post' && config.data) {
+    config.data.appId = store.state.appId
+    config.data.appid = store.state.appId
+  } else {
+    if (config.url.indexOf('?') > -1) {
+      config.url = config.url + '&appId=' + store.state.appId
+    } else {
+      config.url = config.url + '?appId=' + store.state.appId
+    }
+  }
   const expTime = compareTime()
   if (expTime === 2) {
     loginTime()
@@ -50,7 +60,7 @@ axios.interceptors.response.use(function (response) {
       return DATA
     } else {
       isCloseLoading()
-      ElMessage.error(DATA.msg || DATA.ElMessage)
+      ElMessage.error(DATA.msg || DATA.message)
       return DATA
     }
   }

@@ -1,7 +1,7 @@
 import axios from 'axios'
-const Auth = '/api/auth'
-const Permission = '/api/permission'
-const Api = '/api'
+const Auth = '/auth'
+const Permission = '/permission'
+
 // 登录
 export const postLogin = params => { return axios.post(`${Auth}/token/login`, params) }
 // 验证码
@@ -11,7 +11,7 @@ export const postTokenChange = params => { return axios.post(`${Auth}/token/chan
 // 根据refreshToken重新获取Authorization
 export const postTokenRefresh = params => { return axios.post(`${Auth}/token/refresh`, params) }
 // 获取用户信息
-export const getUserCurrent = () => { return axios.get(`${Api}/registry/mdm/user/getInfo`) }
+export const getUserCurrent = () => { return axios.get(`${Auth}/user/current`) }
 // 获取角色菜单 原全民接口
 export const getMenuRoleTree = params => { return axios.get(`${Permission}/menu/roleTree/${params}`) }
 // 获取角色菜单 样本中心独有菜单接口 当中有角色权限判断

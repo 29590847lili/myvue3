@@ -21,7 +21,7 @@
       </div>
       <el-table :data="tableData">
         <el-table-column type="index" label="序号" min-width="80" align="center">
-          <template slot-scope="scope">
+          <template #default="scope">
             {{ (search.page.current - 1) * search.page.size + (scope.$index + 1) }}
           </template>
         </el-table-column>
@@ -30,12 +30,12 @@
         <el-table-column prop="createdTime" label="创建时间" min-width="160" />
         <el-table-column prop="createdTime" label="更新时间" min-width="160" />
         <el-table-column prop="roleName" label="状态" min-width="100">
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-switch v-model="scope.row.status" :active-value="1" :inactive-value="2" @change="postUpdateRoleStatus(scope.row)" />
           </template>
         </el-table-column>
         <el-table-column prop="name" label="操作" fixed="right" min-width="130">
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
             <el-button type="text" @click="postRemoveRoleById(scope.row)">删除</el-button>
             <el-button type="text" @click="handlePower(scope.row)">权限</el-button>
@@ -47,7 +47,7 @@
       </el-pagination>
     </div>
     <!-- 添加/编辑 -->
-    <el-dialog :title="roleForm.role.roleId ? '编辑角色' : '添加角色'" :visible.sync="dialog.addOrEdit" width="500px" :close-on-click-modal="false" :close-on-press-escape="false">
+    <el-dialog :title="roleForm.role.roleId ? '编辑角色' : '添加角色'" v-model="dialog.addOrEdit" width="500px" :close-on-click-modal="false" :close-on-press-escape="false">
       <div class="dialog-main">
         <el-form :model="roleForm" :rules="roleFormRules" ref="roleForm" label-width="100px">
           <el-form-item label="角色名称" prop="role.roleName">
@@ -58,10 +58,12 @@
           </el-form-item>
         </el-form>
       </div>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialog.addOrEdit = false">取 消</el-button>
-        <el-button @click="roleSubmit()" type="primary">确 定</el-button>
-      </span>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialog.addOrEdit = false">取 消</el-button>
+          <el-button @click="roleSubmit()" type="primary">确 定</el-button>
+        </span>
+      </template>
     </el-dialog>
   </div>
 </template>
@@ -125,12 +127,14 @@ export default {
             if (res.code === 200) {
               this.getTableList()
               this.dialog.addOrEdit = false
+              this.$message.success('操作成功！')
             }
           } else {
             const res = await postCreateRole(this.roleForm)
             if (res.code === 200) {
               this.getTableList()
               this.dialog.addOrEdit = false
+              this.$message.success('操作成功！')
             }
           }
         }

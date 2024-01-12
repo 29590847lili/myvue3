@@ -23,7 +23,7 @@
       </div>
       <el-table :data="tableData">
         <el-table-column type="index" label="序号" min-width="80" align="center">
-          <template slot-scope="scope">
+          <template #default="scope">
             {{ (search.pageNum - 1) * search.pagesize + (scope.$index + 1) }}
           </template>
         </el-table-column>
@@ -33,12 +33,12 @@
         <el-table-column prop="roleName" label="角色名称" min-width="120" show-overflow-tooltip />
         <el-table-column prop="createdTime" label="创建时间" min-width="160" />
         <el-table-column prop="status" label="状态" width="80">
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-switch v-model="scope.row.status" :active-value="1" :inactive-value="2" @change="postAccountUseUpdateStatus(scope.row)" />
           </template>
         </el-table-column>
         <el-table-column prop="name" label="操作" fixed="right" min-width="110">
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
             <el-button type="text" @click="handleResetPassword(scope.row)">重置密码</el-button>
           </template>
@@ -49,7 +49,7 @@
       </el-pagination>
     </div>
     <!-- 添加/编辑账号 -->
-    <el-dialog :title="this.userFormData.userId ? '编辑账号' : '添加账号'" :visible.sync="dialog.addOrEdit" width="480px" :close-on-click-modal="false" :close-on-press-escape="false" @close="handleClose()">
+    <el-dialog :title="this.userFormData.userId ? '编辑账号' : '添加账号'" v-model="dialog.addOrEdit" width="480px" :close-on-click-modal="false" :close-on-press-escape="false" @close="handleClose()">
       <div class="dialog-main">
         <el-form :model="userFormData" :rules="userFormDataRules" ref="userFormData" label-width="110px">
           <el-form-item label="账号名称" prop="loginAccount">
@@ -75,10 +75,12 @@
           <el-form-item>初始密码：123@qwe.asd</el-form-item>
         </el-form>
       </div>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="handleClose()">取 消</el-button>
-        <el-button @click="postUserRegister()" type="primary">确 定</el-button>
-      </span>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="handleClose()">取 消</el-button>
+          <el-button @click="postUserRegister()" type="primary">确 定</el-button>
+        </span>
+      </template>
     </el-dialog>
   </div>
 </template>
@@ -232,9 +234,6 @@ export default {
     handleEdit (row) {
       this.userFormData = JSON.parse(JSON.stringify(row))
       this.dialog.addOrEdit = true
-      setTimeout(() => {
-        this.$refs.userFormData.clearValidate()
-      }, 100)
     },
     // 重置
     clearSearch () {

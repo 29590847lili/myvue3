@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import PageHeader from '@/components/pageHeader'
-import UpdatePassword from '@/components/updatePassword'
+import PageHeader from '@/components/pageHeader.vue'
+import UpdatePassword from '@/components/updatePassword.vue'
 export default {
   data () {
     return {
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@leftWidth: 180px;
+@leftWidth: 240px;
 #app-main {
   width: 100%;
   height: calc(100% - 56px);
@@ -48,7 +48,7 @@ export default {
   #app-left {
     width: @leftWidth;
     height: 100%;
-    background: #2a3764;
+    background: #fff;
   }
   #app-right {
     width: calc(100% - @leftWidth);
@@ -68,7 +68,7 @@ export default {
     }
   }
 }
-.el-submenu__title i,
+.el-sub-menu__title i,
 .el-menu-item i {
   color: #fff;
 }

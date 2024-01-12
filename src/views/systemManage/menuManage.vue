@@ -10,7 +10,7 @@
         <el-table-column prop="icon" label="菜单图标" min-width="120" show-overflow-tooltip />
         <el-table-column prop="orderNum" label="菜单排序" min-width="80" />
         <el-table-column prop="date" label="操作" width="230">
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-button type="text" @click="addChildren(scope.row)" v-if="scope.row.level < 3">添加子级菜单</el-button>
             <el-button type="text" @click="editOneItem(scope.row)" v-if="scope.row.level < 3">编辑</el-button>
             <el-button type="text" @click="editBtnItem(scope.row)" v-if="scope.row.level == 3">编辑</el-button>
@@ -39,13 +39,15 @@
           <el-input class="w-300" type="text" v-model="postaddMenuData.orderNum" maxlength="3"></el-input>
         </el-form-item>
       </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialog.one = false">取 消</el-button>
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-      </span>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialog.one = false">取 消</el-button>
+          <el-button type="primary" @click="submitForm">确 定</el-button>
+        </span>
+      </template>
     </el-dialog>
     <!-- 添加按钮 -->
-    <el-dialog :title="btnForm.menuId ? '编辑按钮' : '添加按钮'" :visible.sync="dialog.addBtn" width="540px" :close-on-click-modal="false" :close-on-press-escape="false">
+    <el-dialog :title="btnForm.menuId ? '编辑按钮' : '添加按钮'" v-model="dialog.addBtn" width="540px" :close-on-click-modal="false" :close-on-press-escape="false">
       <el-form :model="btnForm" ref="btnForm" label-width="160px">
         <el-form-item label="按钮名称">
           <el-input v-model="btnForm.menuName" class="w-300"></el-input>
@@ -63,10 +65,12 @@
           <el-input v-model="btnForm.remark" class="w-300"></el-input>
         </el-form-item>
       </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialog.addBtn = false">取 消</el-button>
-        <el-button @click="submitAddBtn()" type="primary">确 定</el-button>
-      </span>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialog.addBtn = false">取 消</el-button>
+          <el-button @click="submitAddBtn()" type="primary">确 定</el-button>
+        </span>
+      </template>
     </el-dialog>
   </div>
 </template>
@@ -216,7 +220,7 @@ const btnForm = {
   overflow-y: auto;
   background: #fff;
   border-radius: 6px;
-  box-shadow: 0 0 13px rgb(0 0 0 6%);
+  // box-shadow: 0 0 13px rgb(0 0 0 6%);
   margin: 0 20px 20px;
   padding: 20px;
   .menu-one {
