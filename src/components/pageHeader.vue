@@ -81,7 +81,7 @@ export default {
   display: flex;
   justify-content: space-between;
   // background: #fff;
-  background: #0a9f96;
+  background: @primary-color;
   box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 1;

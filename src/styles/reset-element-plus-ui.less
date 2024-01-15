@@ -9,7 +9,7 @@
         .iconfont{margin-right:8px;font-size:13px;color:#333;font-weight: normal;}
     }
     .ep-menu-item.one-link{color:#303133!important;margin:0 16px;border-radius:6px;
-        &.is-active{background:#0A9F96!important;color:#fff!important;font-weight:normal;
+        &.is-active{background:@primary-color!important;color:#fff!important;font-weight:normal;
             .iconfont{color:#fff!important;}
         }
     }
@@ -39,8 +39,8 @@
             .iconfont,.ep-icon-arrow-down{color:#333}
         }
         &.is-opened{
-            .is-active{color:#0A9F96;border-radius:6px;
-                .dot{background: #0A9F96;}
+            .is-active{color: @primary-color;border-radius:6px;
+                .dot{background: @primary-color;}
             }
             .ep-menu--inline{background:#FFF!important}
         }
@@ -51,24 +51,24 @@
     .menu-two{position: relative;
         .dot{position:absolute;top: 16px;left: 20px; display: inline-block;width: 4px;height: 4px;background: #333; border-radius: 50%;}
         .ep-sub-menu__title{padding-left:47px!important;color:#303133!important;position: relative;}
-        &.is-active{background:#0A9F96;color:#fff!important;
+        &.is-active{background:@primary-color;color:#fff!important;
             .dot{background:#fff!important}
         }
-        &.ep-menu-item.is-active:hover{background:#0A9F96!important}
+        &.ep-menu-item.is-active:hover{background:@primary-color!important}
         &.is-opened{
             .iconfont{color:#333}
         }
         &:focus {
-            background:#0A9F96!important
+            background:@primary-color!important
         }
     }
     .menu-three{
-        &.is-opened.is-active{background:#ECEFF5!important;color:#0A9F96}
+        &.is-opened.is-active{background:#ECEFF5!important;color:@primary-color}
         .ep-sub-menu__title{padding-left:47px!important;color:#303133!important;background:#fff!important;
             &:hover{background:#ECEFF5!important;}
         }
-        .ep-menu-item{padding-left:62px!important;color:#0A9F96!important;
-            &.is-active{color:#0A9F96!important;}
+        .ep-menu-item{padding-left:62px!important;color:@primary-color!important;
+            &.is-active{color:@primary-color!important;}
         }
     }
 }
