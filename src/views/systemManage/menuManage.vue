@@ -4,7 +4,7 @@
       <div class="add-men">
         <el-button type="primary" @click="editOneItem()">新增一级菜单</el-button>
       </div>
-      <el-table :data="getMenuTreeListData" height="calc(100% - 53px)" row-key="menuId" border :tree-props="{children: 'children'}">
+      <el-table :data="getMenuTreeListData" row-key="menuId" border :tree-props="{children: 'children'}">
         <el-table-column prop="menuName" label="菜单名称" min-width="300" show-overflow-tooltip />
         <el-table-column prop="path" label="菜单路径" min-width="220" show-overflow-tooltip />
         <el-table-column prop="icon" label="菜单图标" min-width="120" show-overflow-tooltip />
@@ -21,7 +21,7 @@
       </el-table>
     </div>
     <!-- 弹窗 -->
-    <el-dialog :title="postaddMenuData.menuId ? '编辑菜单' : '新增菜单'" :visible.sync="dialog.one" :close-on-click-modal="false" width="500px">
+    <el-dialog :title="postaddMenuData.menuId ? '编辑菜单' : '新增菜单'" v-model="dialog.one" :close-on-click-modal="false" width="500px">
       <el-form :model="postaddMenuData" label-width="140px">
         <el-form-item label="菜单名称">
           <el-input class="w-300" type="text" v-model="postaddMenuData.menuName" maxlength="20"></el-input>

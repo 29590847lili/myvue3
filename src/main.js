@@ -29,7 +29,9 @@ const app = createApp(App)
 registerComponents(app)
 app.config.globalProperties.$axios = axios
 app.use(ElementPlus, {
+  size: 'small',
   locale: zhCn,
+  zIndex: 3000
 })
 app.use(router)
 app.use(store)

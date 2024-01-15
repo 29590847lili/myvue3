@@ -7,13 +7,25 @@
         </div>
         <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="100px">
           <el-form-item prop="username">
-            <el-input v-model="loginForm.username" prefix-icon="con-zhanghao" ref="username" :maxlength="20" placeholder="请输入账号或绑定的手机号" />
+            <el-input v-model="loginForm.username" ref="username" :maxlength="20" placeholder="请输入账号或绑定的手机号">
+              <template #prefix>
+                <i class="iconfont icon-zhanghao"></i>
+              </template>
+            </el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input v-model="loginForm.password" prefix-icon="icon-mima" type="password" ref="password" show-password :maxlength="20" placeholder="请输入登录密码" />
+            <el-input v-model="loginForm.password" type="password" ref="password" show-password :maxlength="20" placeholder="请输入登录密码">
+              <template #prefix>
+                <i class="iconfont icon-mima"></i>
+              </template>
+            </el-input>
           </el-form-item>
           <el-form-item prop="captcha">
-            <el-input class="captcha" v-model="loginForm.captcha" prefix-icon="icon-yanzhengma" ref="captcha" :maxlength="4" placeholder="请输入验证码" />
+            <el-input class="captcha" v-model="loginForm.captcha" ref="captcha" :maxlength="4" placeholder="请输入验证码">
+              <template #prefix>
+                <i class="iconfont icon-yanzhengma"></i>
+              </template>
+            </el-input>
             <el-button class="captcha-btn" type="primary" @click="sendSms()">{{ sendContent }}</el-button>
           </el-form-item>
           <div class="forget-password">
@@ -219,35 +231,35 @@ const rules = {
         text-align: center;
         font-size: 22px;
         font-weight: bold;
-        color: #306be2;
+        color: @primary-color;
         .logo-img {
           width: 420px;
         }
       }
-      /deep/ .el-form {
+      :deep(.ep-form) {
         width: 100%;
         margin: 0 auto;
         padding-top: 27px;
-        .el-form-item {
+        .ep-form-item {
           height: 46px;
           margin-bottom: 20px;
           &:last-child {
             margin-bottom: 0;
           }
-          .el-form-item__content {
+          .ep-form-item__content {
             margin-left: 0 !important;
             height: 100% !important;
             position: relative;
             display: flex;
-            .el-input {
-              .el-input__inner {
+            .ep-input {
+              .ep-input__inner {
                 height: 46px;
                 padding-left: 40px;
               }
-              .el-input__prefix {
+              .ep-input__prefix {
                 left: 10px;
                 top: 1px;
-                color: #306be2;
+                color: @primary-color;
               }
             }
             .code-img {
@@ -261,19 +273,17 @@ const rules = {
           }
         }
       }
-      /deep/ .login-submit {
+      :deep(.login-submit) {
         width: 100%;
         margin: 0 auto;
         position: relative;
-        .el-button {
+        .ep-button {
           width: 100%;
           height: 40px;
-          background: #306be2;
-          // border-radius: 20px;
           font-size: 14px;
           font-weight: 400;
         }
-        .el-button--medium {
+        .ep-button--medium {
           padding: 13px;
         }
         .link {
@@ -281,20 +291,20 @@ const rules = {
           right: 0;
           top: 52px;
           text-decoration: underline;
-          color: #306be2;
+          color: @primary-color;
         }
       }
-      /deep/ .forget-password {
+      :deep(.forget-password) {
         width: 100%;
         margin: 0 auto;
         position: relative;
         margin-top: -13px;
         margin-bottom: 10px;
         text-align: right;
-        .el-button {
+        .ep-button {
           font-size: 13px;
           font-weight: 400;
-          color: #306be2;
+          color: @primary-color;
         }
       }
     }

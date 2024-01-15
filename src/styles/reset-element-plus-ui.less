@@ -82,11 +82,28 @@
             font-weight: normal;
         }
     }
+    .ep-input--small .ep-input__inner{
+        height: 32px;
+        line-height: 32px;
+    }
+    .ep-form-item--small .ep-form-item__label {
+        height: 32px;
+        line-height: 32px;
+    }
+    .ep-input--small{
+        font-size: 13px !important;line-height: 32px !important;
+    }
 }
+
 
 // 表格
 .ep-table{color:#677081;
-    th.ep-table__cell{background:#FCFDFF;color:#303133;border-top: 1px solid #EBEEF5;}
+    th.ep-table__cell {
+        background: #FCFDFF !important;
+        font-size: 12px;
+        padding: 8px 0;
+        .cell{color:#303133;padding: 0 10px}
+    }
     .ep-button--text{padding-top:0px;padding-bottom:0px;}
 }
 // type = selection 样式
@@ -100,15 +117,23 @@
 }
 
 // 弹窗
-.ep-dialog__title{font-size: 13px;}
-.ep-dialog__header{background: #F1F4FA;border-radius: 6px 2px 2px 2px;color: #3E3E3E;font-weight: bold;font-family: Source Han Sans CN;font-size: 13px;margin-bottom: 30px; margin-right:0;padding: 10px 20px 10px;}
-.ep-dialog__body{padding:0 20px 10px 20px}
-.ep-dialog__footer{border-top:1px solid #E4E4E4;padding:14px;}
-.ep-form-item__label{font-size: 13px;font-family: Source Han Sans CN;font-weight: 500;color: #3E3E3E;text-align:right;
+.ep-dialog__title{font-size: 13px !important;}
+.ep-dialog__header{background: #F1F4FA;border-radius: 6px 2px 2px 2px;color: #3E3E3E;font-weight: bold;font-family: Source Han Sans CN;font-size: 13px;margin-bottom: 30px; margin-right:0 !important;padding: 10px 20px 10px !important;}
+.ep-dialog__body{padding:0 20px 10px 20px !important;font-size: 14px !important;}
+.ep-dialog__footer{border-top:1px solid #E4E4E4;padding:14px!important;}
+.ep-form-item__label{font-size: 13px !important;font-family: Source Han Sans CN;font-weight: 500;color: #3E3E3E;text-align:right;
     &::after{display:inline-block;content:'：'}
 }
-.ep-dialog__headerbtn{top:0}
-
+.ep-dialog__headerbtn{
+    top:16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    top: 16px !important;
+    right: 16px !important;
+}
+.ep-dialog__headerbtn .ep-dialog__close{
+    color:#909399 !important;
+}
 // 单选框
 .ep-radio-group{
     .ep-radio__label{font-size:13px;}
@@ -122,12 +147,21 @@
 // }
 
 // 按钮
-.ep-button--primary, .ep-button--default {
-    padding: 7px 19px;
-    height: 32px;
-    border-radius: 4px;
+.ep-button{
+    padding: 7px 19px !important;
+    height: 32px !important;
+    border-radius: 4px!important;
 }
-
+.ep-button--text{
+    height: auto;
+    padding: 0 !important;
+}
+.ep-button + .ep-button {
+    margin-left: 10px;
+}
+.ep-select .ep-input__wrapper {
+    height: 32px;
+}
 // 提示框
 .ep-message-box {width: 500px;}
 .ep-message-box__header{height:42px;line-height:42px;background:#F1F4FA;font-size:13px!important;color:#3E3E3E;padding: 13px 15px 10px;
@@ -136,7 +170,6 @@
 .ep-message-box__message{text-align:center;padding:30px 0;font-size:13px;}
 .ep-message-box__btns{height:70px;border-top:1px solid #DCDEE6;display:flex;align-items:center;justify-content:center;
     .ep-button{padding:10px 30px;}
-    .ep-button--primary{background: #0A9F96;}
 }
 .ep-tooltip__popper.is-dark{background-color:rgba(000,0,0,0.5);filter:alpha(opacity=50);}
 .popper__arrow{opacity: 0.6;}
