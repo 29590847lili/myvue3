@@ -43,17 +43,18 @@ export default {
     }
   },
   props: {
-    value: {
+    modelValue: {
       default: () => []
     },
     options: {
       default: () => []
     }
   },
-  model: {
-    prop: 'value',
-    event: 'setValue'
-  },
+  emits: ['update:modelValue'],
+  // model: {
+  //   prop: 'value',
+  //   event: 'setValue'
+  // },
   computed: {
     // 获取整棵树节点长度
     optionnsLng () {
@@ -77,7 +78,7 @@ export default {
     }
   },
   watch: {
-    value: {
+    modelValue: {
       handler (value) {
         this.treeValue = value
         if (this.echo && value.length) {
@@ -94,7 +95,7 @@ export default {
   },
   methods: {
     setValue () {
-      this.$emit('setValue', [...new Set(this.treeValue)])
+      this.$emit('update:modelValue', [...new Set(this.treeValue)])
     },
     // 根据末级按钮权限回显菜单
     setMenuIds (value) {
