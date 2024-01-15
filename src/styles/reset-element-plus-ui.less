@@ -163,15 +163,16 @@
     height: 32px;
 }
 // 提示框
-.ep-message-box {width: 500px;}
-.ep-message-box__header{height:42px;line-height:42px;background:#F1F4FA;font-size:13px!important;color:#3E3E3E;padding: 13px 15px 10px;
+.el-message-box {max-width: 500px;}
+.el-message-box__header{height:42px;line-height:42px;background:#F1F4FA;color:#3E3E3E;padding: 13px 15px 10px;
     .ep-message-box__title{font-size:13px;font-weight: bold;font-family: Source Han Sans CN;}
 }
-.ep-message-box__message{text-align:center;padding:30px 0;font-size:13px;}
-.ep-message-box__btns{height:70px;border-top:1px solid #DCDEE6;display:flex;align-items:center;justify-content:center;
-    .ep-button{padding:10px 30px;}
+.el-message-box__title{font-size:13px!important;font-weight: bold;font-family: "微软雅黑";}
+.el-message-box__message{text-align:center;padding:30px 0;font-size:14px;}
+.el-message-box__btns{height:70px;border-top:1px solid #DCDEE6;display:flex;align-items:center;justify-content:center;
+    .el-button{padding:10px 30px;height: auto; background: @primary-color;border: none;}
 }
-.ep-tooltip__popper.is-dark{background-color:rgba(000,0,0,0.5);filter:alpha(opacity=50);}
+.el-tooltip__popper.is-dark{background-color:rgba(000,0,0,0.5);filter:alpha(opacity=50);}
 .popper__arrow{opacity: 0.6;}
 
 .ep-form-item.is-required:not(.is-no-asterisk) .ep-form-item__labep-wrap>.ep-form-item__label:before, .ep-form-item.is-required:not(.is-no-asterisk)>.ep-form-item__label:before{

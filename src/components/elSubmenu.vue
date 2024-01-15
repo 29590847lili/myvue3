@@ -2,7 +2,8 @@
   <div>
     <el-sub-menu :index="menus.path" class="menu-one">
       <template #title>
-        <i :class="menus.icon"></i>
+        <!-- {{menus.icon}} -->
+        <i class="iconfont icon-xitong"></i>
         <span>{{menus.name}}</span>
       </template>
       <template v-if="menus.level > 1">

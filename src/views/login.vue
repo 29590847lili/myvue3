@@ -253,7 +253,7 @@ const rules = {
             display: flex;
             .ep-input {
               .ep-input__inner {
-                height: 46px;
+                height: 44px;
                 padding-left: 40px;
               }
               .ep-input__prefix {
@@ -279,7 +279,7 @@ const rules = {
         position: relative;
         .ep-button {
           width: 100%;
-          height: 40px;
+          height: 40px !important;
           font-size: 14px;
           font-weight: 400;
         }
