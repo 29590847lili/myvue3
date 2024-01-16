@@ -87,9 +87,10 @@ export default {
       }
       const res = await postCaptchaSms(params)
       if (res.code === 200) {
-        this.$alert(`验证码已发送到您手机号为${res.data.phone}上，请注意查收。`, '提示', {
+        this.alert(`验证码已发送到您手机号为${res.data.phone}上，请注意查收。`, '提示', {
           confirmButtonText: '确定',
-          showClose: false
+          showClose: false,
+          appendTo: '#router-view'
         }).then(() => {
           this.loginForm.uuid = res.data.uuid
           this.$refs.captcha.focus()
@@ -236,27 +237,27 @@ const rules = {
           width: 420px;
         }
       }
-      :deep(.ep-form) {
+      :deep(.el-form) {
         width: 100%;
         margin: 0 auto;
         padding-top: 27px;
-        .ep-form-item {
+        .el-form-item {
           height: 46px;
           margin-bottom: 20px;
           &:last-child {
             margin-bottom: 0;
           }
-          .ep-form-item__content {
+          .el-form-item__content {
             margin-left: 0 !important;
             height: 100% !important;
             position: relative;
             display: flex;
-            .ep-input {
-              .ep-input__inner {
+            .el-input {
+              .el-input__inner {
                 height: 44px;
                 padding-left: 40px;
               }
-              .ep-input__prefix {
+              .el-input__prefix {
                 left: 10px;
                 top: 1px;
                 color: @primary-color;
@@ -277,13 +278,13 @@ const rules = {
         width: 100%;
         margin: 0 auto;
         position: relative;
-        .ep-button {
+        .el-button {
           width: 100%;
           height: 40px !important;
           font-size: 14px;
           font-weight: 400;
         }
-        .ep-button--medium {
+        .el-button--medium {
           padding: 13px;
         }
         .link {
@@ -301,7 +302,7 @@ const rules = {
         margin-top: -13px;
         margin-bottom: 10px;
         text-align: right;
-        .ep-button {
+        .el-button {
           font-size: 13px;
           font-weight: 400;
           color: @primary-color;

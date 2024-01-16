@@ -94,7 +94,7 @@ const postCreateRoleData = { // 新增、编辑角色表单
         content: "";
         width: 3px;
         height: 13px;
-        background: #0a9f96;
+        background: @primary-color;
         margin-right: 10px;
       }
     }
